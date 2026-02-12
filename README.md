@@ -1,2 +1,5 @@
-# Flight_Control-STM32F411-
-è¿™æ˜¯ä¸€ä¸ªç”±äºŽè´­ä¹°æ­£ç‚¹åŽŸå­MiniFlyè€Œå—åˆ°å¯å‘ï¼Œæƒ³è¦äºŒæ¬¡å¼€å‘çš„ä»“åº“ã€‚
+# Flight_Control-STM32F411
+ÕâÊÇÒ»¸öÓÉÓÚ¹ºÂòÕýµãÔ­×ÓMiniFly¶øÊÜµ½Æô·¢£¬ÏëÒª¶þ´Î¿ª·¢µÄ²Ö¿â¡£
+
+2026/2/12:
+    1. ÏîÄ¿¿ªÊ¼£¬´´½¨¹¤³Ì£¬ÒÆÖ²FreeRTOS£¬¼øÓÚ²»Ã÷°×¾ßÌåFreeRTOSConfig.hµÄÅäÖÃ£¬ÏÈÓÃAIÉú³ÉµÄ£¬ºóÃæÓÐÐèÒªÔÙÐÞ¸Ä
