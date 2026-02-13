@@ -51,6 +51,15 @@
 "..\obj\queue.o"
 "..\obj\tasks.o"
 "..\obj\timers.o"
+"..\obj\radiolink.o"
+"..\obj\atkprx.o"
+"..\obj\stabilizer.o"
+"..\obj\atkptx.o"
+"..\obj\community.o"
+"..\obj\uart2.o"
+"..\obj\bmp280.o"
+"..\obj\i2c.o"
+"..\obj\mpu9250.o"
 --strict --scatter "..\OBJ\FlightControl.sct"
 --summary_stderr --info summarysizes --map --load_addr_map_info --xref --callgraph --symbols
 --info sizes --info totals --info unused --info veneers

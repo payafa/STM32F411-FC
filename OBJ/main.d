@@ -29,3 +29,17 @@
 ..\obj\main.o: ..\FWLIB\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_wwdg.h
 ..\obj\main.o: ..\FWLIB\STM32F4xx_StdPeriph_Driver\inc\misc.h
 ..\obj\main.o: ..\FWLIB\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_flash_ramfunc.h
+..\obj\main.o: ..\FreeRTOS\inc\FreeRTOS.h
+..\obj\main.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\stddef.h
+..\obj\main.o: ..\FreeRTOS\FreeRTOSConfig.h
+..\obj\main.o: ..\FreeRTOS\inc\projdefs.h
+..\obj\main.o: ..\FreeRTOS\inc\portable.h
+..\obj\main.o: ..\FreeRTOS\inc\deprecated_definitions.h
+..\obj\main.o: ..\FreeRTOS\inc\portmacro.h
+..\obj\main.o: ..\FreeRTOS\inc\mpu_wrappers.h
+..\obj\main.o: ..\FreeRTOS\inc\task.h
+..\obj\main.o: ..\FreeRTOS\inc\list.h
+..\obj\main.o: ..\TASK\radioLink.h
+..\obj\main.o: ..\TASK\atkpRx.h
+..\obj\main.o: ..\TASK\stabilizer.h
+..\obj\main.o: ..\TASK\atkpTx.h

@@ -340,7 +340,7 @@
               <MiscControls></MiscControls>
               <Define>USE_STDPERIPH_DRIVER,STM32F411xE</Define>
               <Undefine></Undefine>
-              <IncludePath>..\FWLIB\CMSIS\Core;..\FWLIB\CMSIS\Driver\Startup;..\FWLIB\CMSIS\Driver\STM32F4xx;..\FWLIB\STM32F4xx_StdPeriph_Driver\inc;..\USER;..\FreeRTOS\inc;..\FreeRTOS</IncludePath>
+              <IncludePath>..\FWLIB\CMSIS\Core;..\FWLIB\CMSIS\Driver\Startup;..\FWLIB\CMSIS\Driver\STM32F4xx;..\FWLIB\STM32F4xx_StdPeriph_Driver\inc;..\USER;..\FreeRTOS\inc;..\FreeRTOS;..\TASK;..\DRIVER</IncludePath>
             </VariousControls>
           </Cads>
           <Aads>
@@ -693,6 +693,66 @@
               <FileName>FreeRTOSConfig.h</FileName>
               <FileType>5</FileType>
               <FilePath>..\FreeRTOS\FreeRTOSConfig.h</FilePath>
+            </File>
+          </Files>
+        </Group>
+        <Group>
+          <GroupName>TASK</GroupName>
+          <Files>
+            <File>
+              <FileName>radioLink.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\TASK\radioLink.c</FilePath>
+            </File>
+            <File>
+              <FileName>atkpRx.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\TASK\atkpRx.c</FilePath>
+            </File>
+            <File>
+              <FileName>stabilizer.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\TASK\stabilizer.c</FilePath>
+            </File>
+            <File>
+              <FileName>atkpTx.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\TASK\atkpTx.c</FilePath>
+            </File>
+          </Files>
+        </Group>
+        <Group>
+          <GroupName>COMMUNITY</GroupName>
+          <Files>
+            <File>
+              <FileName>community.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\COMMUNITY\community.c</FilePath>
+            </File>
+          </Files>
+        </Group>
+        <Group>
+          <GroupName>DRIVER</GroupName>
+          <Files>
+            <File>
+              <FileName>UART2.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\DRIVER\UART2.c</FilePath>
+            </File>
+            <File>
+              <FileName>BMP280.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\DRIVER\BMP280.c</FilePath>
+            </File>
+            <File>
+              <FileName>I2C.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\DRIVER\I2C.c</FilePath>
+            </File>
+            <File>
+              <FileName>MPU9250.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\DRIVER\MPU9250.c</FilePath>
             </File>
           </Files>
         </Group>
