@@ -1,10 +1,10 @@
 /*
  * I2C.h
  *
- * I2C基础驱动程序头文件
- * 用于STM32F411CEU6与I2C设备的通信
+ * I2C????????????????
+ * ????STM32F411CEU6??I2C?豸?????
  *
- * 四轴无人机飞控系统
+ * ??????????????
  */
 
 #ifndef I2C_H
@@ -12,7 +12,7 @@
 
 #include "stm32f4xx.h"
 
-/* 宏定义 */
+/* ???? */
 #define I2C1_SCL_PIN          GPIO_Pin_6
 #define I2C1_SCL_PORT         GPIOB
 #define I2C1_SDA_PIN          GPIO_Pin_7
@@ -23,10 +23,10 @@
 #define I2C2_SDA_PIN          GPIO_Pin_11
 #define I2C2_SDA_PORT         GPIOB
 
-#define I2C1_CLOCK_SPEED      400000  // I2C1时钟速度 (400kHz)
-#define I2C2_CLOCK_SPEED      400000  // I2C2时钟速度 (400kHz)
+#define I2C1_CLOCK_SPEED      400000  // I2C1?????? (400kHz)
+#define I2C2_CLOCK_SPEED      400000  // I2C2?????? (400kHz)
 
-/* 函数声明 */
+/* ???????? */
 void I2C1_Init(void);
 void I2C2_Init(void);
 

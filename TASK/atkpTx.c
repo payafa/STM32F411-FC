@@ -3,8 +3,8 @@
 /*
 	*atkpTx函数
 	*用处：
-	*1.接收来自stabilizerTask的数据包
-	*2.使用队列排队发送数据包给radioLinkTask
+	*1.收集飞行器状态
+	*2.发送给遥控器数据包
 */
 
 void atkpTxTask(){
