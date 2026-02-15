@@ -1,4 +1,4 @@
-/*
+﻿/*
  * FreeRTOS Kernel V11.1.0
  * Copyright (C) 2021 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
@@ -882,3 +882,4 @@
  * to include event groups functionality. If you want to include event groups
  * then ensure configUSE_EVENT_GROUPS is set to 1 in FreeRTOSConfig.h. */
 #endif /* configUSE_EVENT_GROUPS == 1 */
+

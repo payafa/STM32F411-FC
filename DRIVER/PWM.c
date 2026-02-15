@@ -1,50 +1,50 @@
-/*
+ï»¿/*
  * PWM.c
  *
- * PWMÇı¶¯³ÌĞòÊµÏÖ
- * ÓÃÓÚSTM32F411CEU6¿ØÖÆµç»ú
+ * PWMé©±åŠ¨å®ç°
+ * ç”¨äºSTM32F411CEU6çš„ç”µæœºæ§åˆ¶
  *
- * ËÄÖáÎŞÈË»ú·É¿ØÏµÍ³
+ * 2026-02-15
  */
 
 #include "PWM.h"
 
-/* º¯ÊıÔ­ĞÍ */
+/* å†…éƒ¨å‡½æ•° */
 static void PWM_GPIO_Config(void);
 static void PWM_TIM2_Config(void);
 static void PWM_TIM4_Config(void);
 
 /**
- * @brief  PWM³õÊ¼»¯
- * @param  ÎŞ
- * @retval ÎŞ
+ * @brief  PWMåˆå§‹åŒ–
+ * @param  æ— 
+ * @retval æ— 
  */
 void PWM_Init(void)
 {
-    /* ÅäÖÃGPIO */
+    /* åˆå§‹åŒ–GPIO */
     PWM_GPIO_Config();
     
-    /* ÅäÖÃ¶¨Ê±Æ÷ */
+    /* åˆå§‹åŒ–å®šæ—¶å™¨ */
     PWM_TIM2_Config();
     PWM_TIM4_Config();
     
-    /* Æô¶¯PWM */
+    /* å¯åŠ¨PWM */
     PWM_Start();
 }
 
 /**
- * @brief  GPIOÅäÖÃ
- * @param  ÎŞ
- * @retval ÎŞ
+ * @brief  GPIOé…ç½®
+ * @param  æ— 
+ * @retval æ— 
  */
 static void PWM_GPIO_Config(void)
 {
     GPIO_InitTypeDef GPIO_InitStructure;
     
-    /* Ê¹ÄÜGPIOÊ±ÖÓ */
+    /* ä½¿èƒ½GPIOæ—¶é’Ÿ */
     RCC_AHB1PeriphClockCmd(RCC_AHB1Periph_GPIOA | RCC_AHB1Periph_GPIOB, ENABLE);
     
-    /* ÅäÖÃPA5 (TIM2_CH1) */
+    /* é…ç½®PA5 (TIM2_CH1) */
     GPIO_InitStructure.GPIO_Pin = GPIO_Pin_5;
     GPIO_InitStructure.GPIO_Mode = GPIO_Mode_AF;
     GPIO_InitStructure.GPIO_Speed = GPIO_Speed_100MHz;
@@ -53,7 +53,7 @@ static void PWM_GPIO_Config(void)
     GPIO_Init(GPIOA, &GPIO_InitStructure);
     GPIO_PinAFConfig(GPIOA, GPIO_PinSource5, GPIO_AF_TIM2);
     
-    /* ÅäÖÃPB6 (TIM4_CH1) */
+    /* é…ç½®PB6 (TIM4_CH1) */
     GPIO_InitStructure.GPIO_Pin = GPIO_Pin_6;
     GPIO_InitStructure.GPIO_Mode = GPIO_Mode_AF;
     GPIO_InitStructure.GPIO_Speed = GPIO_Speed_100MHz;
@@ -62,7 +62,7 @@ static void PWM_GPIO_Config(void)
     GPIO_Init(GPIOB, &GPIO_InitStructure);
     GPIO_PinAFConfig(GPIOB, GPIO_PinSource6, GPIO_AF_TIM4);
     
-    /* ÅäÖÃPB7 (TIM4_CH2) */
+    /* é…ç½®PB7 (TIM4_CH2) */
     GPIO_InitStructure.GPIO_Pin = GPIO_Pin_7;
     GPIO_InitStructure.GPIO_Mode = GPIO_Mode_AF;
     GPIO_InitStructure.GPIO_Speed = GPIO_Speed_100MHz;
@@ -71,7 +71,7 @@ static void PWM_GPIO_Config(void)
     GPIO_Init(GPIOB, &GPIO_InitStructure);
     GPIO_PinAFConfig(GPIOB, GPIO_PinSource7, GPIO_AF_TIM4);
     
-    /* ÅäÖÃPB10 (TIM2_CH3) */
+    /* é…ç½®PB10 (TIM2_CH3) */
     GPIO_InitStructure.GPIO_Pin = GPIO_Pin_10;
     GPIO_InitStructure.GPIO_Mode = GPIO_Mode_AF;
     GPIO_InitStructure.GPIO_Speed = GPIO_Speed_100MHz;
@@ -82,29 +82,29 @@ static void PWM_GPIO_Config(void)
 }
 
 /**
- * @brief  TIM2ÅäÖÃ
- * @param  ÎŞ
- * @retval ÎŞ
+ * @brief  TIM2é…ç½®
+ * @param  æ— 
+ * @retval æ— 
  */
 static void PWM_TIM2_Config(void)
 {
     TIM_TimeBaseInitTypeDef TIM_TimeBaseStructure;
     TIM_OCInitTypeDef TIM_OCInitStructure;
     
-    /* Ê¹ÄÜTIM2Ê±ÖÓ */
+    /* ä½¿èƒ½TIM2æ—¶é’Ÿ */
     RCC_APB1PeriphClockCmd(RCC_APB1Periph_TIM2, ENABLE);
     
-    /* ¼ÆËã¶¨Ê±Æ÷²ÎÊı */
+    /* è®¡ç®—é¢„åˆ†é¢‘å€¼ */
     uint32_t prescaler = (SystemCoreClock / 2) / (PWM_FREQUENCY * PWM_RESOLUTION) - 1;
     
-    /* ÅäÖÃTIM2Ê±¼ä»ù´¡ */
+    /* é…ç½®TIM2åŸºæœ¬å‚æ•° */
     TIM_TimeBaseStructure.TIM_Period = PWM_RESOLUTION - 1;
     TIM_TimeBaseStructure.TIM_Prescaler = prescaler;
     TIM_TimeBaseStructure.TIM_ClockDivision = 0;
     TIM_TimeBaseStructure.TIM_CounterMode = TIM_CounterMode_Up;
     TIM_TimeBaseInit(TIM2, &TIM_TimeBaseStructure);
     
-    /* ÅäÖÃTIM2_CH1 (MOTOR4) */
+    /* é…ç½®TIM2_CH1 (MOTOR4) */
     TIM_OCInitStructure.TIM_OCMode = TIM_OCMode_PWM1;
     TIM_OCInitStructure.TIM_OutputState = TIM_OutputState_Enable;
     TIM_OCInitStructure.TIM_Pulse = 0;
@@ -112,40 +112,40 @@ static void PWM_TIM2_Config(void)
     TIM_OC1Init(TIM2, &TIM_OCInitStructure);
     TIM_OC1PreloadConfig(TIM2, TIM_OCPreload_Enable);
     
-    /* ÅäÖÃTIM2_CH3 (MOTOR3) */
+    /* é…ç½®TIM2_CH3 (MOTOR3) */
     TIM_OCInitStructure.TIM_OutputState = TIM_OutputState_Enable;
     TIM_OCInitStructure.TIM_Pulse = 0;
     TIM_OC3Init(TIM2, &TIM_OCInitStructure);
     TIM_OC3PreloadConfig(TIM2, TIM_OCPreload_Enable);
     
-    /* Æô¶¯TIM2Ô¤¼ÓÔØ */
+    /* ä½¿èƒ½TIM2è‡ªåŠ¨é‡è½½ */
     TIM_ARRPreloadConfig(TIM2, ENABLE);
 }
 
 /**
- * @brief  TIM4ÅäÖÃ
- * @param  ÎŞ
- * @retval ÎŞ
+ * @brief  TIM4é…ç½®
+ * @param  æ— 
+ * @retval æ— 
  */
 static void PWM_TIM4_Config(void)
 {
     TIM_TimeBaseInitTypeDef TIM_TimeBaseStructure;
     TIM_OCInitTypeDef TIM_OCInitStructure;
     
-    /* Ê¹ÄÜTIM4Ê±ÖÓ */
+    /* ä½¿èƒ½TIM4æ—¶é’Ÿ */
     RCC_APB1PeriphClockCmd(RCC_APB1Periph_TIM4, ENABLE);
     
-    /* ¼ÆËã¶¨Ê±Æ÷²ÎÊı */
+    /* è®¡ç®—é¢„åˆ†é¢‘å€¼ */
     uint32_t prescaler = (SystemCoreClock / 2) / (PWM_FREQUENCY * PWM_RESOLUTION) - 1;
     
-    /* ÅäÖÃTIM4Ê±¼ä»ù´¡ */
+    /* é…ç½®TIM4åŸºæœ¬å‚æ•° */
     TIM_TimeBaseStructure.TIM_Period = PWM_RESOLUTION - 1;
     TIM_TimeBaseStructure.TIM_Prescaler = prescaler;
     TIM_TimeBaseStructure.TIM_ClockDivision = 0;
     TIM_TimeBaseStructure.TIM_CounterMode = TIM_CounterMode_Up;
     TIM_TimeBaseInit(TIM4, &TIM_TimeBaseStructure);
     
-    /* ÅäÖÃTIM4_CH1 (MOTOR2) */
+    /* é…ç½®TIM4_CH1 (MOTOR2) */
     TIM_OCInitStructure.TIM_OCMode = TIM_OCMode_PWM1;
     TIM_OCInitStructure.TIM_OutputState = TIM_OutputState_Enable;
     TIM_OCInitStructure.TIM_Pulse = 0;
@@ -153,25 +153,25 @@ static void PWM_TIM4_Config(void)
     TIM_OC1Init(TIM4, &TIM_OCInitStructure);
     TIM_OC1PreloadConfig(TIM4, TIM_OCPreload_Enable);
     
-    /* ÅäÖÃTIM4_CH2 (MOTOR1) */
+    /* é…ç½®TIM4_CH2 (MOTOR1) */
     TIM_OCInitStructure.TIM_OutputState = TIM_OutputState_Enable;
     TIM_OCInitStructure.TIM_Pulse = 0;
     TIM_OC2Init(TIM4, &TIM_OCInitStructure);
     TIM_OC2PreloadConfig(TIM4, TIM_OCPreload_Enable);
     
-    /* Æô¶¯TIM4Ô¤¼ÓÔØ */
+    /* ä½¿èƒ½TIM4è‡ªåŠ¨é‡è½½ */
     TIM_ARRPreloadConfig(TIM4, ENABLE);
 }
 
 /**
- * @brief  ÉèÖÃµç»úPWMÕ¼¿Õ±È
- * @param  motor: µç»ú±àºÅ (0-3)
- * @param  duty: Õ¼¿Õ±È (0-1000)
- * @retval ÎŞ
+ * @brief  è®¾ç½®ç”µæœºPWMå ç©ºæ¯”
+ * @param  motor: ç”µæœºç¼–å· (0-3)
+ * @param  duty: å ç©ºæ¯” (0-1000)
+ * @retval æ— 
  */
 void PWM_SetDuty(uint8_t motor, uint16_t duty)
 {
-    /* ÏŞÖÆÕ¼¿Õ±È·¶Î§ */
+    /* é™åˆ¶å ç©ºæ¯”èŒƒå›´ */
     if (duty < PWM_MIN_DUTY)
     {
         duty = PWM_MIN_DUTY;
@@ -181,7 +181,7 @@ void PWM_SetDuty(uint8_t motor, uint16_t duty)
         duty = PWM_MAX_DUTY;
     }
     
-    /* ÉèÖÃ¶ÔÓ¦µç»úµÄÕ¼¿Õ±È */
+    /* è®¾ç½®å¯¹åº”é€šé“çš„å ç©ºæ¯” */
     switch (motor)
     {
         case MOTOR1:  // TIM4_CH2 (PB7)
@@ -202,25 +202,25 @@ void PWM_SetDuty(uint8_t motor, uint16_t duty)
 }
 
 /**
- * @brief  Æô¶¯PWMÊä³ö
- * @param  ÎŞ
- * @retval ÎŞ
+ * @brief  å¯åŠ¨PWMè¾“å‡º
+ * @param  æ— 
+ * @retval æ— 
  */
 void PWM_Start(void)
 {
-    /* Æô¶¯TIM2ºÍTIM4 */
+    /* å¯åŠ¨TIM2å’ŒTIM4 */
     TIM_Cmd(TIM2, ENABLE);
     TIM_Cmd(TIM4, ENABLE);
 }
 
 /**
- * @brief  Í£Ö¹PWMÊä³ö
- * @param  ÎŞ
- * @retval ÎŞ
+ * @brief  åœæ­¢PWMè¾“å‡º
+ * @param  æ— 
+ * @retval æ— 
  */
 void PWM_Stop(void)
 {
-    /* Í£Ö¹TIM2ºÍTIM4 */
+    /* åœæ­¢TIM2å’ŒTIM4 */
     TIM_Cmd(TIM2, DISABLE);
     TIM_Cmd(TIM4, DISABLE);
 }

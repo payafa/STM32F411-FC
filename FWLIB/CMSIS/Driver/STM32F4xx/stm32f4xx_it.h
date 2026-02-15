@@ -1,4 +1,4 @@
-/**
+﻿/**
   ******************************************************************************
   * @file    Project/STM32F4xx_StdPeriph_Templates/stm32f4xx_it.h 
   * @author  MCD Application Team
@@ -49,4 +49,5 @@ void SysTick_Handler(void);
 #endif
 
 #endif /* __STM32F4xx_IT_H */
+
 

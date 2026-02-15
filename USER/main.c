@@ -1,4 +1,4 @@
-/**
+﻿/**
   ******************************************************************************
   * @file    Project/STM32F4xx_StdPeriph_Templates/main.c 
   * @author  MCD Application Team
@@ -127,5 +127,6 @@ void assert_failed(uint8_t* file, uint32_t line)
 /**
   * @}
   */
+
 
 

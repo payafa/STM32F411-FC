@@ -1,4 +1,4 @@
-/**
+﻿/**
   ******************************************************************************
   * @file    Project/STM32F4xx_StdPeriph_Templates/main.h 
   * @author  MCD Application Team
@@ -33,4 +33,5 @@
 void TimingDelay_Decrement(void);
 
 #endif /* __MAIN_H */
+
 

@@ -1,18 +1,16 @@
-#include "stabilizer.h"
+ï»¿#include "stabilizer.h"
 
 /*
-	*stabilizerTaskº¯Êý£¬ÊÇ´¦Àí·ÖÎöÈÎÎñµÄºËÐÄº¯Êý£¬
-	*ÓÃ´¦£º
-	*1.Ê¹ÓÃI2C½ÓÊÕÀ´×ÔMPU9250£¨µØÖ·Îª0xD2£©£¬BMP280£¨µØÖ·Îª0xEC£©µÄ´«¸ÐÆ÷Êý¾Ý
-	*2.Ê¹ÓÃÀ´×Ô´«¸ÐÆ÷µÄÊý¾ÝÀ´½øÐÐ×ËÌ¬½âËã
-	*3.½ÓÊÜatkpRxµÄ¶ÔÏµÍ³×´Ì¬µÄµ÷Õû£¬½øÐÐ¶ÔÓ¦µÄ¿ØÖÆ
-	*4.·µ»Ø¶ÔÓ¦Êý¾Ý°ü¸øatkpTxTask
-*/
+ * stabilizerTaskå‡½æ•°ï¼Œæ˜¯å¤„ç†åˆ†æžä»»åŠ¡çš„æ ¸å¿ƒå‡½æ•°ï¼Œ
+ * ç”¨å¤„ï¼š
+ * 1.ä½¿ç”¨I2CæŽ¥æ”¶æ¥è‡ªMPU9250ï¼ˆåœ°å€ä¸º0xD2ï¼‰ï¼ŒBMP280ï¼ˆåœ°å€ä¸º0xECï¼‰çš„ä¼ æ„Ÿå™¨æ•°æ®
+ * 2.ä½¿ç”¨æ¥è‡ªä¼ æ„Ÿå™¨çš„æ•°æ®æ¥è¿›è¡Œå§¿æ€è§£ç®—
+ * 3.æŽ¥å—atkpRxçš„å¯¹ç³»ç»ŸçŠ¶æ€çš„è°ƒæ•´ï¼Œè¿›è¡Œå¯¹åº”çš„æŽ§åˆ¶
+ * 4.è¿”å›žå¯¹åº”æ•°æ®åŒ…ç»™atkpTxTask
+ */
 
 void stabilizerTask(){
-	while(1){
-		
-	}
+    while(1){
+        
+    }
 }
-
-

@@ -1,4 +1,4 @@
-/*
+﻿/*
  * FreeRTOS Kernel V11.1.0
  * Copyright (C) 2021 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
@@ -624,3 +624,4 @@ void vPortHeapResetState( void )
     xNumberOfSuccessfulFrees = ( size_t ) 0U;
 }
 /*-----------------------------------------------------------*/
+

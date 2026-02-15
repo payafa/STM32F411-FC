@@ -1,4 +1,4 @@
-/*
+﻿/*
  * FreeRTOS Kernel V11.1.0
  * Copyright (C) 2021 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
@@ -244,3 +244,4 @@ UBaseType_t uxListRemove( ListItem_t * const pxItemToRemove )
     return pxList->uxNumberOfItems;
 }
 /*-----------------------------------------------------------*/
+

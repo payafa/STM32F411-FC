@@ -1,31 +1,31 @@
-/*
+ï»¿/*
  * UART2.c
  *
- * UART2Çı¶¯³ÌĞòÊµÏÖ
- * ÓÃÓÚSTM32F411CEU6ÓëNRF51822µÄÍ¨ĞÅ
+ * UART2é©±åŠ¨ç¨‹åºå®ç°
+ * ç”¨äºSTM32F411CEU6ä¸NRF51822çš„é€šä¿¡
  *
- * ËÄÖáÎŞÈË»ú·É¿ØÏµÍ³
+ * å››è½´æ— äººæœºé£æ§ç³»ç»Ÿ
  */
 
 #include "UART2.h"
 
-/* È«¾Ö±äÁ¿ */
+/* å…¨å±€å˜é‡ */
 static uint8_t g_txBuffer[UART2_TX_BUFFER_SIZE];
 static uint8_t g_rxBuffer[UART2_RX_BUFFER_SIZE];
 static volatile uint16_t g_txIndex = 0;
 static volatile uint16_t g_rxIndex = 0;
 static volatile uint8_t g_rxFlag = 0;
 
-/* º¯ÊıÔ­ĞÍ */
+/* å‡½æ•°åŸå‹ */
 static void UART2_GPIO_Config(void);
 static void UART2_Config(void);
 static void UART2_NVIC_Config(void);
 static uint8_t CalculateChecksum(uint8_t *data, uint16_t length);
 
 /**
- * @brief  UART2³õÊ¼»¯
- * @param  ÎŞ
- * @retval ÎŞ
+ * @brief  UART2åˆå§‹åŒ–
+ * @param  æ— 
+ * @retval æ— 
  */
 void UART2_Init(void)
 {
@@ -35,19 +35,19 @@ void UART2_Init(void)
 }
 
 /**
- * @brief  GPIOÅäÖÃ
- * @param  ÎŞ
- * @retval ÎŞ
+ * @brief  GPIOé…ç½®
+ * @param  æ— 
+ * @retval æ— 
  */
 static void UART2_GPIO_Config(void)
 {
     GPIO_InitTypeDef GPIO_InitStructure;
     
-    /* Ê¹ÄÜGPIOAºÍUSART2µÄÊ±ÖÓ */
+    /* ä½¿èƒ½GPIOAå’ŒUSART2çš„æ—¶é’Ÿ */
     RCC_AHB1PeriphClockCmd(RCC_AHB1Periph_GPIOA, ENABLE);
     RCC_APB1PeriphClockCmd(RCC_APB1Periph_USART2, ENABLE);
     
-    /* ÅäÖÃPA2ÎªUSART2_TX */
+    /* é…ç½®PA2ä¸ºUSART2_TX */
     GPIO_InitStructure.GPIO_Pin = GPIO_Pin_2;
     GPIO_InitStructure.GPIO_Mode = GPIO_Mode_AF;
     GPIO_InitStructure.GPIO_Speed = GPIO_Speed_50MHz;
@@ -55,25 +55,25 @@ static void UART2_GPIO_Config(void)
     GPIO_InitStructure.GPIO_PuPd = GPIO_PuPd_UP;
     GPIO_Init(GPIOA, &GPIO_InitStructure);
     
-    /* ÅäÖÃPA3ÎªUSART2_RX */
+    /* é…ç½®PA3ä¸ºUSART2_RX */
     GPIO_InitStructure.GPIO_Pin = GPIO_Pin_3;
     GPIO_Init(GPIOA, &GPIO_InitStructure);
     
-    /* ½«PA2ºÍPA3¸´ÓÃÎªUSART2 */
+    /* å°†PA2å’ŒPA3å¤ç”¨ä¸ºUSART2 */
     GPIO_PinAFConfig(GPIOA, GPIO_PinSource2, GPIO_AF_USART2);
     GPIO_PinAFConfig(GPIOA, GPIO_PinSource3, GPIO_AF_USART2);
 }
 
 /**
- * @brief  USART2ÅäÖÃ
- * @param  ÎŞ
- * @retval ÎŞ
+ * @brief  USART2é…ç½®
+ * @param  æ— 
+ * @retval æ— 
  */
 static void UART2_Config(void)
 {
     USART_InitTypeDef USART_InitStructure;
     
-    /* ÅäÖÃUSART2²ÎÊı */
+    /* é…ç½®USART2å‚æ•° */
     USART_InitStructure.USART_BaudRate = UART2_BAUDRATE;
     USART_InitStructure.USART_WordLength = USART_WordLength_8b;
     USART_InitStructure.USART_StopBits = USART_StopBits_1;
@@ -81,58 +81,58 @@ static void UART2_Config(void)
     USART_InitStructure.USART_HardwareFlowControl = USART_HardwareFlowControl_None;
     USART_InitStructure.USART_Mode = USART_Mode_Rx | USART_Mode_Tx;
     
-    /* ³õÊ¼»¯USART2 */
+    /* åˆå§‹åŒ–USART2 */
     USART_Init(USART2, &USART_InitStructure);
     
-    /* Ê¹ÄÜUSART2½ÓÊÕÖĞ¶Ï */
+    /* ä½¿èƒ½USART2æ¥æ”¶ä¸­æ–­ */
     USART_ITConfig(USART2, USART_IT_RXNE, ENABLE);
     
-    /* Ê¹ÄÜUSART2 */
+    /* ä½¿èƒ½USART2 */
     USART_Cmd(USART2, ENABLE);
 }
 
 /**
- * @brief  NVICÅäÖÃ
- * @param  ÎŞ
- * @retval ÎŞ
+ * @brief  NVICé…ç½®
+ * @param  æ— 
+ * @retval æ— 
  */
 static void UART2_NVIC_Config(void)
 {
     NVIC_InitTypeDef NVIC_InitStructure;
     
-    /* ÅäÖÃUSART2ÖĞ¶Ï */
+    /* é…ç½®USART2ä¸­æ–­ */
     NVIC_InitStructure.NVIC_IRQChannel = USART2_IRQn;
-    NVIC_InitStructure.NVIC_IRQChannelPreemptionPriority = 6;  // ¸ßÓÅÏÈ¼¶
+    NVIC_InitStructure.NVIC_IRQChannelPreemptionPriority = 6;  // é«˜ä¼˜å…ˆçº§
     NVIC_InitStructure.NVIC_IRQChannelSubPriority = 0;
     NVIC_InitStructure.NVIC_IRQChannelCmd = ENABLE;
     NVIC_Init(&NVIC_InitStructure);
 }
 
 /**
- * @brief  ·¢ËÍµ¥¸ö×Ö½Ú
- * @param  byte: Òª·¢ËÍµÄ×Ö½Ú
- * @retval ÎŞ
+ * @brief  å‘é€å•ä¸ªå­—èŠ‚
+ * @param  byte: è¦å‘é€çš„å­—èŠ‚
+ * @retval æ— 
  */
 void UART2_SendByte(uint8_t byte)
 {
-    /* µÈ´ı·¢ËÍ»º³åÇøÎª¿Õ */
+    /* ç­‰å¾…å‘é€ç¼“å†²åŒºä¸ºç©º */
     while (USART_GetFlagStatus(USART2, USART_FLAG_TXE) == RESET);
     
-    /* ·¢ËÍ×Ö½Ú */
+    /* å‘é€å­—èŠ‚ */
     USART_SendData(USART2, byte);
 }
 
 /**
- * @brief  ·¢ËÍÊı¾İ¿é
- * @param  data: Êı¾İÖ¸Õë
- * @param  length: Êı¾İ³¤¶È
- * @retval ÎŞ
+ * @brief  å‘é€æ•°æ®å—
+ * @param  data: æ•°æ®æŒ‡é’ˆ
+ * @param  length: æ•°æ®é•¿åº¦
+ * @retval æ— 
  */
 void UART2_SendData(uint8_t *data, uint16_t length)
 {
     uint16_t i;
     
-    /* ·¢ËÍÊı¾İ */
+    /* å‘é€æ•°æ® */
     for (i = 0; i < length; i++)
     {
         UART2_SendByte(data[i]);
@@ -140,17 +140,17 @@ void UART2_SendData(uint8_t *data, uint16_t length)
 }
 
 /**
- * @brief  ¼ÆËãĞ£ÑéºÍ
- * @param  data: Êı¾İÖ¸Õë
- * @param  length: Êı¾İ³¤¶È
- * @retval Ğ£ÑéºÍ
+ * @brief  è®¡ç®—æ ¡éªŒå’Œ
+ * @param  data: æ•°æ®æŒ‡é’ˆ
+ * @param  length: æ•°æ®é•¿åº¦
+ * @retval æ ¡éªŒå’Œ
  */
 static uint8_t CalculateChecksum(uint8_t *data, uint16_t length)
 {
     uint8_t checksum = 0;
     uint16_t i;
     
-    /* ¼ÆËãĞ£ÑéºÍ */
+    /* è®¡ç®—æ ¡éªŒå’Œ */
     for (i = 0; i < length; i++)
     {
         checksum ^= data[i];
@@ -160,44 +160,44 @@ static uint8_t CalculateChecksum(uint8_t *data, uint16_t length)
 }
 
 /**
- * @brief  ·¢ËÍÊı¾İ°ü
- * @param  packet: Êı¾İ°üÖ¸Õë
- * @retval ÎŞ
+ * @brief  å‘é€æ•°æ®åŒ…
+ * @param  packet: æ•°æ®åŒ…æŒ‡é’ˆ
+ * @retval æ— 
  */
 void UART2_SendPacket(Packet_t *packet)
 {
-    /* ¼ÆËãĞ£ÑéºÍ */
+    /* è®¡ç®—æ ¡éªŒå’Œ */
     packet->checksum = CalculateChecksum(&packet->type, packet->length + 2);
     
-    /* ·¢ËÍÊı¾İ°ü */
+    /* å‘é€æ•°æ®åŒ… */
     UART2_SendData((uint8_t *)packet, packet->length + 4);
 }
 
 /**
- * @brief  ½ÓÊÕµ¥¸ö×Ö½Ú
- * @param  ÎŞ
- * @retval ½ÓÊÕµ½µÄ×Ö½Ú
+ * @brief  æ¥æ”¶å•ä¸ªå­—èŠ‚
+ * @param  æ— 
+ * @retval æ¥æ”¶åˆ°çš„å­—èŠ‚
  */
 uint8_t UART2_ReceiveByte(void)
 {
-    /* µÈ´ı½ÓÊÕÊı¾İ */
+    /* ç­‰å¾…æ¥æ”¶æ•°æ® */
     while (USART_GetFlagStatus(USART2, USART_FLAG_RXNE) == RESET);
     
-    /* ¶ÁÈ¡½ÓÊÕµÄÊı¾İ */
+    /* è¯»å–æ¥æ”¶çš„æ•°æ® */
     return (uint8_t)USART_ReceiveData(USART2);
 }
 
 /**
- * @brief  ½ÓÊÕÊı¾İ¿é
- * @param  buffer: ½ÓÊÕ»º³åÇø
- * @param  maxLength: ×î´ó½ÓÊÕ³¤¶È
- * @retval Êµ¼Ê½ÓÊÕµÄ³¤¶È
+ * @brief  æ¥æ”¶æ•°æ®å—
+ * @param  buffer: æ¥æ”¶ç¼“å†²åŒº
+ * @param  maxLength: æœ€å¤§æ¥æ”¶é•¿åº¦
+ * @retval å®é™…æ¥æ”¶çš„é•¿åº¦
  */
 uint16_t UART2_ReceiveData(uint8_t *buffer, uint16_t maxLength)
 {
     uint16_t length = 0;
     
-    /* ½ÓÊÕÊı¾İ */
+    /* æ¥æ”¶æ•°æ® */
     while (UART2_IsDataAvailable() && length < maxLength)
     {
         buffer[length++] = UART2_ReceiveByte();
@@ -207,27 +207,27 @@ uint16_t UART2_ReceiveData(uint8_t *buffer, uint16_t maxLength)
 }
 
 /**
- * @brief  ½ÓÊÕÊı¾İ°ü
- * @param  packet: Êı¾İ°üÖ¸Õë
- * @retval ³É¹¦±êÖ¾£º1-³É¹¦£¬0-Ê§°Ü
+ * @brief  æ¥æ”¶æ•°æ®åŒ…
+ * @param  packet: æ•°æ®åŒ…æŒ‡é’ˆ
+ * @retval æˆåŠŸæ ‡å¿—ï¼š1-æˆåŠŸï¼Œ0-å¤±è´¥
  */
 uint8_t UART2_ReceivePacket(Packet_t *packet)
 {
     uint8_t i;
     uint8_t checksum;
     
-    /* µÈ´ıÊı¾İ°ü */
+    /* ç­‰å¾…æ•°æ®åŒ… */
     if (!g_rxFlag)
     {
         return 0;
     }
     
-    /* ¸´ÖÆÊı¾İµ½Êı¾İ°ü½á¹¹ */
+    /* å¤åˆ¶æ•°æ®åˆ°æ•°æ®åŒ…ç»“æ„ */
     packet->start = g_rxBuffer[0];
     packet->type = g_rxBuffer[1];
     packet->length = g_rxBuffer[2];
     
-    /* ¸´ÖÆÊı¾İÄÚÈİ */
+    /* å¤åˆ¶æ•°æ®å†…å®¹ */
     for (i = 0; i < packet->length; i++)
     {
         packet->data[i] = g_rxBuffer[3 + i];
@@ -235,7 +235,7 @@ uint8_t UART2_ReceivePacket(Packet_t *packet)
     
     packet->checksum = g_rxBuffer[3 + packet->length];
     
-    /* ÑéÖ¤Ğ£ÑéºÍ */
+    /* éªŒè¯æ ¡éªŒå’Œ */
     checksum = CalculateChecksum(&packet->type, packet->length + 2);
     if (checksum != packet->checksum)
     {
@@ -243,16 +243,16 @@ uint8_t UART2_ReceivePacket(Packet_t *packet)
         return 0;
     }
     
-    /* Çå³ı½ÓÊÕ±êÖ¾ */
+    /* æ¸…é™¤æ¥æ”¶æ ‡å¿— */
     g_rxFlag = 0;
     
     return 1;
 }
 
 /**
- * @brief  ¼ì²éÊÇ·ñÓĞÊı¾İ¿ÉÓÃ
- * @param  ÎŞ
- * @retval Êı¾İ¿ÉÓÃ±êÖ¾£º1-ÓĞÊı¾İ£¬0-ÎŞÊı¾İ
+ * @brief  æ£€æŸ¥æ˜¯å¦æœ‰æ•°æ®å¯ç”¨
+ * @param  æ— 
+ * @retval æ•°æ®å¯ç”¨æ ‡å¿—ï¼š1-æœ‰æ•°æ®ï¼Œ0-æ— æ•°æ®
  */
 uint8_t UART2_IsDataAvailable(void)
 {
@@ -260,39 +260,40 @@ uint8_t UART2_IsDataAvailable(void)
 }
 
 /**
- * @brief  USART2ÖĞ¶Ï´¦Àíº¯Êı
- * @param  ÎŞ
- * @retval ÎŞ
+ * @brief  USART2ä¸­æ–­å¤„ç†å‡½æ•°
+ * @param  æ— 
+ * @retval æ— 
  */
 void USART2_IRQHandler(void)
 {
     uint8_t byte;
     
-    /* ¼ì²éÊÇ·ñÊÇ½ÓÊÕÖĞ¶Ï */
+    /* æ£€æŸ¥æ˜¯å¦æ˜¯æ¥æ”¶ä¸­æ–­ */
     if (USART_GetITStatus(USART2, USART_IT_RXNE) != RESET)
     {
-        /* ¶ÁÈ¡½ÓÊÕµÄÊı¾İ */
+        /* è¯»å–æ¥æ”¶çš„æ•°æ® */
         byte = USART_ReceiveData(USART2);
         
-        /* ´¦ÀíÊı¾İ°ü½ÓÊÕ */
-        if (byte == 0xAA)  // ÆğÊ¼×Ö½Ú
+        /* å¤„ç†æ•°æ®åŒ…æ¥æ”¶ */
+        if (byte == 0xAA)  // èµ·å§‹å­—èŠ‚
         {
             g_rxIndex = 0;
         }
         
-        /* ´æ´¢Êı¾İµ½½ÓÊÕ»º³åÇø */
+        /* å­˜å‚¨æ•°æ®åˆ°æ¥æ”¶ç¼“å†²åŒº */
         if (g_rxIndex < UART2_RX_BUFFER_SIZE)
         {
             g_rxBuffer[g_rxIndex++] = byte;
         }
         
-        /* ¼ì²éÊı¾İ°üÊÇ·ñÍêÕû */
+        /* æ£€æŸ¥æ•°æ®åŒ…æ˜¯å¦å®Œæ•´ */
         if (g_rxIndex >= 4 && g_rxBuffer[2] + 4 == g_rxIndex)
         {
-            g_rxFlag = 1;  // Êı¾İ°ü½ÓÊÕÍê³É
+            g_rxFlag = 1;  // æ•°æ®åŒ…æ¥æ”¶å®Œæˆ
         }
         
-        /* Çå³ıÖĞ¶Ï±êÖ¾ */
+        /* æ¸…é™¤ä¸­æ–­æ ‡å¿— */
         USART_ClearITPendingBit(USART2, USART_IT_RXNE);
     }
 }
+

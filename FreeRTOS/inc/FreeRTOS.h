@@ -1,4 +1,4 @@
-/*
+﻿/*
  * FreeRTOS Kernel V11.1.0
  * Copyright (C) 2021 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
@@ -3332,3 +3332,4 @@ typedef StaticStreamBuffer_t StaticMessageBuffer_t;
 /* *INDENT-ON* */
 
 #endif /* INC_FREERTOS_H */
+

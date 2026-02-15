@@ -1,10 +1,10 @@
-/*
+ï»¿/*
  * PWM.h
  *
- * PWMÇı¶¯³ÌĞòÍ·ÎÄ¼ş
- * ÓÃÓÚSTM32F411CEU6¿ØÖÆµç»ú
+ * PWMé©±åŠ¨å¤´æ–‡ä»¶
+ * ç”¨äºSTM32F411CEU6çš„PWMç”µæœºæ§åˆ¶
  *
- * ËÄÖáÎŞÈË»ú·É¿ØÏµÍ³
+ * 2026-02-15
  */
 
 #ifndef PWM_H
@@ -12,19 +12,19 @@
 
 #include "stm32f4xx.h"
 
-/* µç»ú¶¨Òå */
+/* ç”µæœºå®šä¹‰ */
 #define MOTOR1  0
 #define MOTOR2  1
 #define MOTOR3  2
 #define MOTOR4  3
 
-/* PWMÅäÖÃ */
-#define PWM_FREQUENCY      5000  // PWMÆµÂÊ 5kHz
-#define PWM_RESOLUTION     1000  // PWM·Ö±æÂÊ 0-1000
-#define PWM_MIN_DUTY       50    // ×îĞ¡Õ¼¿Õ±È
-#define PWM_MAX_DUTY       950   // ×î´óÕ¼¿Õ±È
+/* PWMå‚æ•° */
+#define PWM_FREQUENCY      5000  // PWMé¢‘ç‡ 5kHz
+#define PWM_RESOLUTION     1000  // PWMåˆ†è¾¨ç‡ 0-1000
+#define PWM_MIN_DUTY       50    // æœ€å°å ç©ºæ¯”
+#define PWM_MAX_DUTY       950   // æœ€å¤§å ç©ºæ¯”
 
-/* º¯ÊıÉùÃ÷ */
+/* å‡½æ•°å£°æ˜ */
 void PWM_Init(void);
 void PWM_SetDuty(uint8_t motor, uint16_t duty);
 void PWM_Start(void);

@@ -1,10 +1,10 @@
-/*
+ï»¿/*
  * UART2.h
  *
- * UART2Çı¶¯³ÌĞòÍ·ÎÄ¼ş
- * ÓÃÓÚSTM32F411CEU6ÓëNRF51822µÄÍ¨ĞÅ
+ * UART2é©±åŠ¨å¤´æ–‡ä»¶
+ * ç”¨äºSTM32F411CEU6çš„ä¸²å£é€šä¿¡
  *
- * ËÄÖáÎŞÈË»ú·É¿ØÏµÍ³
+ * 2026-02-15
  */
 
 #ifndef UART2_H
@@ -12,21 +12,21 @@
 
 #include "stm32f4xx.h"
 
-/* ºê¶¨Òå */
-#define UART2_BAUDRATE          115200    // ²¨ÌØÂÊ
-#define UART2_TX_BUFFER_SIZE     128       // ·¢ËÍ»º³åÇø´óĞ¡
-#define UART2_RX_BUFFER_SIZE     128       // ½ÓÊÕ»º³åÇø´óĞ¡
+/* é…ç½®å‚æ•° */
+#define UART2_BAUDRATE         115200      // æ³¢ç‰¹ç‡
+#define UART2_TX_BUFFER_SIZE   256         // å‘é€ç¼“å†²åŒºå¤§å°
+#define UART2_RX_BUFFER_SIZE   256         // æ¥æ”¶ç¼“å†²åŒºå¤§å°
 
-/* Êı¾İ°ü½á¹¹¶¨Òå */
+/* æ•°æ®åŒ…ç»“æ„ */
 typedef struct {
-    uint8_t start;     // ÆğÊ¼×Ö½Ú£¬Èç0xAA
-    uint8_t type;      // Êı¾İ°üÀàĞÍ
-    uint8_t length;    // Êı¾İ³¤¶È
-    uint8_t data[64];  // Êı¾İÄÚÈİ
-    uint8_t checksum;  // Ğ£ÑéºÍ
+    uint8_t start;     // èµ·å§‹å­—èŠ‚ (0xAA)
+    uint8_t type;      // æ•°æ®åŒ…ç±»å‹
+    uint8_t length;    // æ•°æ®é•¿åº¦
+    uint8_t data[64];  // æ•°æ®å†…å®¹
+    uint8_t checksum;  // æ ¡éªŒå’Œ
 } Packet_t;
 
-/* º¯ÊıÉùÃ÷ */
+/* å‡½æ•°å£°æ˜ */
 void UART2_Init(void);
 void UART2_SendByte(uint8_t byte);
 void UART2_SendData(uint8_t *data, uint16_t length);

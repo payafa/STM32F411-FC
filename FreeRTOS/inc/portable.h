@@ -1,4 +1,4 @@
-/*
+﻿/*
  * FreeRTOS Kernel V11.1.0
  * Copyright (C) 2021 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
@@ -279,3 +279,4 @@ void vPortEndScheduler( void ) PRIVILEGED_FUNCTION;
 /* *INDENT-ON* */
 
 #endif /* PORTABLE_H */
+

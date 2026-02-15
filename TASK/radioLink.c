@@ -1,31 +1,31 @@
-#include "radioLink.h"
+ï»¿#include "radioLink.h"
 
 /*
-	*ÎÞÏßÍ¨ÐÅÇý¶¯£¬¸ºÔðÓë NRF51822 ÎÞÏßÄ£¿éµÄÍ¨ÐÅ
-	*ÓÃ´¦£º
-	*1.´ÓUART2(TX:PA2£¬RX:PA3)¶ÁÈ¡´Ó51822·¢À´µÄÊý¾Ý°ü
-	*2.°Ñ¶Áµ½µÄÊý¾Ý°ü·¢ËÍ¸øatkpRxTask
-	*3.´ÓatkpTxTask½ÓÊÜÒ»¸öÊý¾Ý°ü
-	*4.°Ñ¶Áµ½µÄÀ´×ÔÓÚatkpTxTaskµÄÊý¾Ý°ü·¢ËÍ¸ø51822
+	*æ— çº¿é€šä¿¡é©±åŠ¨ï¼Œè´Ÿè´£ä¸Ž NRF51822 æ— çº¿æ¨¡å—çš„é€šä¿¡
+	*ç”¨å¤„ï¼š
+	*1.ä»ŽUART2(TX:PA2ï¼ŒRX:PA3)è¯»å–ä»Ž51822å‘æ¥çš„æ•°æ®åŒ…
+	*2.æŠŠè¯»åˆ°çš„æ•°æ®åŒ…å‘é€ç»™atkpRxTask
+	*3.ä»ŽatkpTxTaskæŽ¥å—ä¸€ä¸ªæ•°æ®åŒ…
+	*4.æŠŠè¯»åˆ°çš„æ¥è‡ªäºŽatkpTxTaskçš„æ•°æ®åŒ…å‘é€ç»™51822
 	
-	*Êý¾Ý½ÓÊÕÁ÷³Ì£º
-	*1. ³õÊ¼»¯×´Ì¬»úÎª waitForStartByte1
-	*2. Ñ­»·¶ÁÈ¡ UART Êý¾Ý
-	*3. ¸ù¾Ý×´Ì¬»ú½âÎöÊý¾Ý°ü£º
-  	* - waitForStartByte1: µÈ´ýÖ¡Í·µÚÒ»¸ö×Ö½Ú (0xAA)
-  	* - waitForStartByte2: µÈ´ýÖ¡Í·µÚ¶þ¸ö×Ö½Ú (0xAF)
-  	* - waitForMsgID: ½ÓÊÕÏûÏ¢ ID
-  	* - waitForDataLength: ½ÓÊÕÊý¾Ý³¤¶È
-  	* - waitForData: ½ÓÊÕÊý¾ÝÄÚÈÝ
-  	* - waitForChksum1: ÑéÖ¤Ð£ÑéºÍ
-	*4. Ð£ÑéÍ¨¹ýºóµ÷ÓÃ atkpPacketDispatch ´¦ÀíÊý¾Ý°ü
-	*5. ´¦ÀíÍê³ÉºóÖØÖÃ×´Ì¬»ú
+	*æ•°æ®æŽ¥æ”¶æµç¨‹ï¼š
+	*1. åˆå§‹åŒ–çŠ¶æ€æœºä¸º waitForStartByte1
+	*2. å¾ªçŽ¯è¯»å– UART æ•°æ®
+	*3. æ ¹æ®çŠ¶æ€æœºè§£æžæ•°æ®åŒ…ï¼š
+  	* - waitForStartByte1: ç­‰å¾…å¸§å¤´ç¬¬ä¸€ä¸ªå­—èŠ‚ (0xAA)
+  	* - waitForStartByte2: ç­‰å¾…å¸§å¤´ç¬¬äºŒä¸ªå­—èŠ‚ (0xAF)
+  	* - waitForMsgID: æŽ¥æ”¶æ¶ˆæ¯ ID
+  	* - waitForDataLength: æŽ¥æ”¶æ•°æ®é•¿åº¦
+  	* - waitForData: æŽ¥æ”¶æ•°æ®å†…å®¹
+  	* - waitForChksum1: éªŒè¯æ ¡éªŒå’Œ
+	*4. æ ¡éªŒé€šè¿‡åŽè°ƒç”¨ atkpPacketDispatch å¤„ç†æ•°æ®åŒ…
+	*5. å¤„ç†å®ŒæˆåŽé‡ç½®çŠ¶æ€æœº
 	
-	*Êý¾Ý·¢ËÍÁ÷³Ì£º
-	*1. Êý¾Ý°ü±»·ÅÈë·¢ËÍ¶ÓÁÐ txQueue
+	*æ•°æ®å‘é€æµç¨‹ï¼š
+	*1. æ•°æ®åŒ…è¢«æ”¾å…¥å‘é€é˜Ÿåˆ— txQueue
 	
-	*Éæ¼°µ½:
-	*1.NRF51822ÓëSTM32F411CEU6µÄ´®¿ÚÍ¨Ñ¶
+	*æ¶‰åŠåˆ°:
+	*1.NRF51822ä¸ŽSTM32F411CEU6çš„ä¸²å£é€šè®¯
 */
 
 void radioLinkTask(){
@@ -33,5 +33,6 @@ void radioLinkTask(){
 		
 	}
 }
+
 
 

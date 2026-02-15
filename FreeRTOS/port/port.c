@@ -1,4 +1,4 @@
-/*
+﻿/*
  * FreeRTOS Kernel V11.1.0
  * Copyright (C) 2021 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
@@ -887,3 +887,4 @@ __asm uint32_t vPortGetIPSR( void )
     }
 
 #endif /* configASSERT_DEFINED */
+

@@ -1,4 +1,4 @@
-/**
+﻿/**
   ******************************************************************************
   * @file    Project/STM32F4xx_StdPeriph_Templates/stm32f4xx_conf.h  
   * @author  MCD Application Team
@@ -161,4 +161,5 @@
 #endif /* USE_FULL_ASSERT */
 
 #endif /* __STM32F4xx_CONF_H */
+
 

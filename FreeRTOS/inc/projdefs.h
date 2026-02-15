@@ -1,4 +1,4 @@
-/*
+﻿/*
  * FreeRTOS Kernel V11.1.0
  * Copyright (C) 2021 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
@@ -136,3 +136,4 @@ typedef void (* TaskFunction_t)( void * arg );
 
 
 #endif /* PROJDEFS_H */
+

@@ -1,4 +1,4 @@
-/*
+﻿/*
  * FreeRTOS Kernel V11.1.0
  * Copyright (C) 2021 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
@@ -277,3 +277,4 @@ static portFORCE_INLINE BaseType_t xPortIsInsideInterrupt( void )
 /* *INDENT-ON* */
 
 #endif /* PORTMACRO_H */
+
